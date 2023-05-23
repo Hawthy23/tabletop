@@ -1,0 +1,43 @@
+#rolling,
+#advBlock {
+    font-size: 1.5em;
+}
+
+td {
+    border: 2px solid red;
+    overflow: hidden;
+}
+
+div>img {
+    padding: 0%;
+    margin: 0%;
+}
+
+.critsuccess {
+    color: greenyellow;
+}
+
+.critfail {
+    color: red;
+}
+
+#advBlock {
+    display: block;
+
+}
+
+.left {
+    float: left;
+}
+
+.clear {
+    clear: both;
+}
+
+#details {
+    position: absolute;
+
+    display: none;
+    background-color: bisque;
+    border: 2px solid black;
+}

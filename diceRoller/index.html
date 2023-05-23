@@ -1,0 +1,49 @@
+<!DOCTYPE html lang="en">>
+
+<head>
+    <title>dice roller</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div class="left">
+        <input id="diceinput" type="text" placeholder="1d20">
+        <button onclick="publicRoll()">Roll </button>
+        <br>
+        <span id="inputError" style="display: none;">not a valid dice roll!<br> use #d# notation <br>ex:
+            1d20+(1d4*2)</span>
+    </div>
+    <div id="advBlock" class="left">
+        <input type="radio" id="adv" name="adv" value="adv" class="inline">
+        <label for="adv" class="inline">advantage</label>
+        <input type="radio" id="flat" name="adv" value="flat" class="inline" checked="checked">
+        <label for="flat">flat</label>
+        <input type="radio" id="dis" name="adv" value="dis" class="inline">
+        <label for="dis">disadvantage</label>
+        <div id="advDeets"> Questions? click here </div>
+        <div id="details">
+            rolling with <b>advantage</b> means you roll twice and take the higher number<br>
+            rolling with <b>disadvantage</b> means you roll twice and take the lower number<br>
+            <br>
+            how to use it here/bugs:<br>
+            if <b>flat</b> is checked instead, it means it rolls without either. <br>
+            currently; adv/dis only applies on a d20 roll, and if marked will apply on any d20. it will turn 3d20 into a
+            single adv/dis roll <br>
+            if you need to roll multiple d20 with advantage/disadvantage, either roll multiple times or put 1d20+1d20
+            into the roller.
+
+        </div>
+    </div>
+    <div class="clear">
+        <button onclick="clearResults()" id="clearResults">clear results</button>
+    </div>
+
+    <div id="rolling">
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js"></script>
+    <script src="diceRoller.js"></script>
+</body>
+
+
+</html>
