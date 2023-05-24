@@ -6,7 +6,20 @@
 </head>
 
 <body>
+    <div class="diceIcons">
+        Simple Roll:
+        <img src="../dice/d4.svg" class="diceIcon" onclick="simpleRoll('1d4')" title="1d4">
+        <img src="../dice/d6.svg" class="diceIcon" onclick="simpleRoll('1d6')" title="1d6">
+        <img src="../dice/d8.svg" class="diceIcon" onclick="simpleRoll('1d8')" title="1d8">
+        <img src="../dice/d10.svg" class="diceIcon" onclick="simpleRoll('1d10')" title="1d10">
+        <img src="../dice/d12.svg" class="diceIcon" onclick="simpleRoll('1d12')" title="1d12">
+        <img src="../dice/d20.svg" class="diceIcon" onclick="simpleRoll('1d20')" title="1d20">
+        <img src="../dice/d100.svg" class="diceIcon" onclick="simpleRoll('1d100')" title="1d100">
+        
+    </div>
+    <hr>
     <div class="left">
+        Custom Roll:
         <input id="diceinput" type="text" placeholder="1d20">
         <button onclick="publicRoll()">Roll </button>
         <br>
@@ -34,7 +47,10 @@
 
         </div>
     </div>
+    
     <div class="clear">
+        <hr>
+        Rolls:
         <button onclick="clearResults()" id="clearResults">clear results</button>
     </div>
 

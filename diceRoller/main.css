@@ -1,5 +1,5 @@
 #rolling,
-#advBlock {
+#advBlock,.left,.diceIcons {
     font-size: 1.5em;
 }
 
@@ -41,3 +41,6 @@ div>img {
     background-color: bisque;
     border: 2px solid black;
 }
+.diceIcon:hover {
+    filter: invert(100%);
+    }

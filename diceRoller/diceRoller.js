@@ -22,6 +22,16 @@ function clearResults(){
 }
 
 
+function simpleRoll(size){
+document.getElementsByTagName
+
+diceEx = new DiceExpression(size)
+//div to put the display in. 
+var rollingDisplay = document.getElementById("rolling")
+diceEx.roll(rollingDisplay)
+}
+
+
 
 function publicRoll() {
 
@@ -119,7 +129,7 @@ class diceObject {
     diceRoll() {
         var dice = []
         var result
-        i = 0
+        var i = 0
         while (i < this.num) {
             this.result = Math.floor(Math.random() * (this.size - 1 + 1) + 1)
             dice.push({ "result": this.result, "min": 1, "max": this.size, "num": this.num })
