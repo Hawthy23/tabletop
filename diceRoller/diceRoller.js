@@ -23,8 +23,6 @@ function clearResults(){
 
 
 function simpleRoll(size){
-document.getElementsByTagName
-
 diceEx = new DiceExpression(size)
 //div to put the display in. 
 var rollingDisplay = document.getElementById("rolling")
