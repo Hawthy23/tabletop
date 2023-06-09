@@ -1,58 +1,36 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import shipData from './ShipData.json' 
-import {SheetDisplay} from './shipsheet'
+import React, { useState } from "react";
+import ReactDOM from 'react-dom/client';
+import shipData from './ShipData.json'
 
-/**
- * TO DO:
- * -IMPORT FONT AWESOME STUFF. (ICONS.)
- * 
- * 
- * 
- * 
- */
+import { SheetDisplay } from './shipsheet'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faA, faD } from '@fortawesome/free-solid-svg-icons'
+import { faShieldHeart } from '@fortawesome/free-solid-svg-icons'
+import { faDiceD20, faFistRaised, faRocket, faHammer, faCartFlatbedSuitcase, faUsers, faNoteSticky } from '@fortawesome/free-solid-svg-icons'
+import { TopDisplay, DmgPop } from './sheetComponents.jsx'
 
 
+//*IMPORTANT TO-DO 
+//FIGURE OUT TWO WAY BINDING? PERHAPS V
 
-//ReactDOM.render(<h1>Helloworld React!</h1>, document.getElementById('root'));
+const root = ReactDOM.createRoot(document.querySelector("div.summaryCont.flex-container")); // createRoot(container!) if you use TypeScript
+root.render(<TopDisplay />);
 
-
+const popup = ReactDOM.createRoot(document.getElementById("dmgDisplay")); // createRoot(container!) if you use TypeScript
+popup.render(<DmgPop />);
 
 
 window.onload = function () {
-    var strdiv = document.querySelector("div.skill.save.str > span.skillName")
-    strdiv.onclick = function () {SheetDisplay.showPopup("info")}
-    var dmgDiv = document.getElementById('pointsManagement')
-    dmgDiv.onclick = function(){SheetDisplay.showPopup("dmgDisplay")}
-    var grey = document.getElementById('greyout')
-    grey.onclick = function(){SheetDisplay.hidePopup()}
+    /*
 
+   var strdiv = document.querySelector("div.skill.save.str > span.skillName")
+   strdiv.onclick = function () { SheetDisplay.showPopup("info") }
+   var closebttn = document.querySelector("div.popup > span.close")
+   closebttn.onclick = function () { SheetDisplay.showHide("info") }
     
-    var closebttn = document.querySelector("div.popup > span.close")
-    closebttn.onclick = function() {SheetDisplay.showHide("info")}
-/*
     var minIcon = document.querySelector("div.popup > i")
     minIcon.onclick = SheetDisplay.min(event,"infoCustom")
     */
-
-    var sRegenBttn = document.querySelector("div.dmg > button.shield.regen")
-    var sRepairBttn = document.querySelector("div.dmg > button.shield.repair")
-    var hRepairBttn = document.querySelector("div.dmg > button.hull.repair")
-    var sDamageBttn = document.querySelector("div.dmg > button.shield.damage")
-    var hDamageBttn = document.querySelector("div.dmg > button.hull.damage")
-
-    sRegenBttn.onclick = function(){SheetDisplay.shieldRegen()}
-    sRepairBttn.onclick = function(){SheetDisplay.repair("shield")}
-    hRepairBttn.onclick = function(){SheetDisplay.repair("hull")}
-    sDamageBttn.onclick = function(){SheetDisplay.damage()}
-    hDamageBttn.onclick = function(){SheetDisplay.damageHull()}
-    //"button" click stuff
-    /*
-
-
-    */
-
-
     //stat stuff. 
     document.getElementById("crewProf").innerHTML = "+" + shipData.profBonus
 

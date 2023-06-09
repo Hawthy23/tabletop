@@ -35,9 +35,11 @@ static showHide(id) {
 
 static showPopup(id) {
     //var details is identifying details that get passed in? 
-    var element = document.getElementById(id)    
+    var element = document.getElementById(id)   
+    console.log(element.style)
+    
     element.style.display = "flex"
-    document.getElementById("greyout").style.display = "block"
+   // document.getElementById("greyout").style.display = "block"
   
   }
 
@@ -163,6 +165,7 @@ static updateHullDisplay() {
 
     //setting hull display 
     var hullStatsInfo = document.querySelectorAll("div.hullPoints > .number")
+    console.log(hullStatsInfo)
     for (let index = 0; index < hullStatsInfo.length; index++) {
         const element = hullStatsInfo[index];
         element.children[0].innerHTML = hullStats.current
@@ -178,17 +181,6 @@ static updateHullDisplay() {
 
 }
 static updateShieldDisplay() {
-    var shieldStatsInfo = document.querySelectorAll("div.shieldPoints > .number")
-    for (let index = 0; index < shieldStatsInfo.length; index++) {
-        const element = shieldStatsInfo[index];
-
-        element.children[0].innerHTML = shieldStats.current
-        element.children[1].innerHTML = "(+" + shieldStats.temp + ")"
-        element.children[3].innerHTML = shieldMax
-        if (shieldStats.temp == 0) {
-            element.children[1].style.display = "none"
-        }
-    }
     var r = document.querySelector(':root');
     r.style.setProperty('--currentSheildPercent', (shieldStats.current / shieldMax) * 100)
     r.style.setProperty('--currentSheildOver', (shieldStats.temp / shieldMax) * 100)
