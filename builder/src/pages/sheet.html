@@ -1,0 +1,511 @@
+<html>
+
+<head>
+  <title>STARSHIP BUILDER</title>
+  <link rel="stylesheet" href="shipsheet.css">
+  <script src="shipData.js"></script> <!--ship info-->
+  <script src="https://kit.fontawesome.com/c0450eb504.js" crossorigin="anonymous"></script> <!--icons-->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script> <!--vue-->
+  <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script> <!--react-->
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script> <!--reactDom-->
+  <script src="sheetComponents.js" type="text/babel"></script>
+  
+
+  <script src="shipsheet.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+ 
+
+  
+  <div class="popup" id="info">
+    <span id="type">Strength Saving Throw</span> <span class="close" onclick='showHide("info")'><i
+      class="fa-solid fa-square-xmark"></i></span>
+    <div>
+      <span>Customise <i class="fa-solid fa-chevron-down" onclick='min(event,"infoCustom")'></i></span>
+      <div id="infoCustom">
+        <label>saving throw override</label><br />
+        <input type="text" size="5" id="total" /> <input type="text" placeholder="Enter source/notes" />
+        <br /><label>saving throw magic bonus</label><br />
+        <input type="text" size="5" id="magicBonus" /> <input type="text" placeholder="Enter source/notes" />
+        <br /><label>saving throw misc bonus</label><br />
+        <input type="text" size="5" id="miscBonus" /> <input type="text" placeholder="Enter source/notes" />
+        <br /><label> throw proficiency level</label><br />
+        <select name="profLevel" id="profLevel">
+          <option value="--">--</option>
+          <option value="0">not proficient</option>
+          <option value="1">proficienct</option>
+          <option value="2">expertise</option>
+          <option value="3">extra bonus</option>
+        </select>
+        <input type="text" placeholder="Enter source/notes" />
+        <button>update</button>
+      </div>
+      <hr />
+      <div class="details">
+        for more information, consult <a href="https://www.sw5e.com/rules/sotg/abilityScores#strength">the ship's
+          manual</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="popup" id="dmgDisplay">
+    <div class="stationary-fi">
+      <div class="" style="width:100px;">
+        <div style="padding-top: 3px; overflow: hidden;" ><i class="fa-solid fa-shield-heart fa-fw left"></i> <span
+          class="circleTitle">Shield</span> </div>
+        <div class="shieldPoints svg">
+          <div class="number">
+            <span class="current"></span><span class="overflow" style="display: inline;">(0)</span>
+            <hr />
+            <span class="max"></span>
+          </div>
+          <svg class="shieldPoints">
+            <circle cx="50" cy="50" r="40" class="grey base"></circle>
+            <circle cx="50" cy="50" r="40" class="red filled"></circle>
+            <circle cx="50" cy="50" r="40" class="green overflow"></circle>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="dmg fi" style="align-self: center">
+      <button class="shield Regen" onclick="shieldRegen()">shield Regenerate </button><br />
+      <button class="shield Repair" onclick="repair('shield')">repair shield</button>
+      <button class="hull Repair" onclick="repair('hull')">repair hull</button><br />
+      <input type="number" id="damageShipHP" min="0" /><br />
+      <button class="damage" onclick="damage()">damage</button>
+      <button class="hull Damage" onclick="damageHull()">damage (hull)</button>
+    </div>
+
+    <div class="stationary-fi">
+      <div class="" style="width:100px;">
+        <div style="padding-top: 3px; width:100px"><i class="fa-solid fa-rocket fa-fw left"></i> <span
+          class="circleTitle">Hull</span> </div>
+        <div class="hullPoints svg">
+          <div class="number">
+            <span class="current"></span><span class="overflow" style="display: inline;">(0)</span>
+            <hr />
+            <span class="max"></span>
+          </div>
+          <svg class="hullPoints">
+            <circle cx="50" cy="50" r="40" class="grey base"></circle>
+            <circle cx="50" cy="50" r="40" class="red filled"></circle>
+            <circle cx="50" cy="50" r="40" class="green overflow"></circle>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  
+
+  <div id="greyout" onclick="hidePopup()"></div>
+
+
+
+  <div class="summaryCont flex-container">
+    <div class="fi">
+      <h2 id="shipName">no engraving please</h2>
+      size <span id="shipSize">Tiny</span>, Tier <span id="tierNumber">0</span>
+      <br>
+      tier 0: <span id="tier0Roll">role</span>
+    </div>
+    <div class="fi">
+      <div id="pointsManagement" onclick="showPopup('dmgDisplay')">
+        <div class="shieldPoints left">
+          <div style="padding-top: 3px" ;><i class="fa-solid fa-shield-heart fa-fw left"></i> <span
+              class="circleTitle mobile">Shield</span> </div>
+
+          <div class="number mobile">
+            <span class="current"></span><span class="overflow" style="display: inline;">(0)</span>
+            <hr>
+            <span class="max"></span>
+          </div>
+          <svg class="shieldPoints mobile">
+            <circle cx="50" cy="50" r="40" class="grey base mobile"></circle> <!--base (grey)-->
+            <circle cx="50" cy="50" r="40" class="red filled mobile"></circle> <!--hp (red)-->
+            <circle cx="50" cy="50" r="40" class="green overflow mobile"></circle> <!--temphp (green)-->
+          </svg>
+
+        </div> <!--end of shieldpoints class-->
+        <div class="hullPoints left">
+          <div style="padding-top: 3px" ;><i class="fa-solid fa-rocket fa-fw left"></i> <span
+              class="circleTitle mobile">Hull</span> </div>
+          <div class="number mobile">
+            <span class="current"></span><span class="overflow" style="display: inline;">(0)</span>
+            <hr>
+            <span class="max"></span>
+          </div>
+
+          <svg class="hullPoints mobile">
+            <circle cx="50" cy="50" r="40" class="grey base mobile"></circle> <!--base (grey)-->
+            <circle cx="50" cy="50" r="40" class="red filled mobile"></circle> <!--hp (red)-->
+            <circle cx="50" cy="50" r="40" class="green overflow mobile"></circle> <!--temphp (green)-->
+          </svg>
+        </div><!--end of hullPoints class-->
+      </div>
+      <div>
+        crew proficiency <span id="crewProf">+0</span>
+      </div>
+    </div>
+
+
+
+
+  </div>
+
+
+  <div id="sheet">
+
+
+    <div class="cont">
+      <div class="flex-container sectionSelection">
+        <span class="flex-item active"><span class="bttn"><i class="fa-solid fa-dice-d20 fa-fw"
+              title="Skills & Saves"></i></span></span><!--base stats & skills/saves group-->
+        <span class="flex-item"><span class="bttn"><i class="fa-solid fa-fist-raised fa-fw"
+              title="Combat"></i></span></span> <!--combat stuff -->
+        <span class="flex-item"><span class="bttn"><i class="fa-solid fa-rocket fa-fw"
+              title="Ship Information"></i></span></span><!--ship info -->
+        <span class="flex-item"><span class="bttn"><i class="fa-solid fa-hammer fa-fw"
+              title="Mods"></i></span></span><!--modifications -->
+        <span class="flex-item"><span class="bttn"><i class="fa-solid fa-cart-flatbed-suitcase fa-fw"
+              title="Storage"></i></span></span><!--storage-->
+        <span class="flex-item"><span class="bttn"><i class="fa-solid fa-users fa-fw"
+              title="Crew"></i></span></span><!--crew-->
+        <span class="flex-item"><span class="bttn"><i class="fa-solid fa-note-sticky fa-fw"
+              title="Extras"></i></span></span><!--extras-->
+      </div>
+
+      <div id="sectionDisp">
+
+        <div id="stats" class="bigGroup" style="display: inline-block">
+
+          <div id="Str" class="miniStatBlock">
+            <div class="attributeBlock str">
+              <div class="bonus">+0</div>
+              <div class="attribute">10</div>
+            </div>
+
+            <div class="skillBlock">
+              <h3>Strength</h3>
+              <div class="skill save str">
+                <div class="profScale">
+                  <div class="exp save str" id="strSaveExp"></div>
+                  <div class="pro save str" id="strSavePro"></div>
+                </div><button id="strSaveBonus">+0</button> <b
+                  onclick="showPopup('info')">Saving
+                  Throw</b>
+                <span class="advdis" style=><i class="fa-solid"></i></span>
+              </div>
+
+              <div class="skill boost str">
+                <div class="profScale">
+                  <div class="exp boost str" id="boostExp"></div>
+                  <div class="pro boost str" id="boostPro"></div>
+                </div><button id="boostBonus">+0</button> Boost
+                <span class="advdis" style=><i class="fa-solid"></i></span>
+              </div>
+
+              <div class="skill ram str">
+                <div class="profScale">
+                  <div class="exp" id="ramExp"></div>
+                  <div class="pro" id="ramPro"></div>
+                </div><button id="ramBonus">+0</button> Ram
+                <span class="advdis" style=><i class="fa-solid"></i></span>
+              </div>
+
+            </div>
+          </div>
+          <div id="Dex" class="miniStatBlock">
+
+            <div class="attributeBlock dex">
+
+              <div class="bonus">+0</div>
+              <div class="attribute">10</div>
+            </div>
+            <div class="skillBlock">
+              <h3>Dexterity</h3>
+              <div class="skill save dex">
+                <div class="profScale">
+                  <div class="exp" id="dexSaveExp"></div>
+                  <div class="pro" id="dexSavePro"></div>
+                </div>
+                <button id="dexSaveBonus">+0</button> <b>Saving Throw</b>
+                <span class="advdis" style=><i class="fa-solid"></i></span>
+              </div>
+
+              <div class="skill hide dex ">
+                <div class="profScale">
+                  <div class="exp" id="hideExp"></div>
+                  <div class="pro" id="hidePro"></div>
+                </div><button id="hideBonus">+0</button> Hide
+                <span class="advdis" style=><i class="fa-solid"></i></span>
+              </div>
+
+
+              <div class="skill maneuvering dex">
+                <div class="profScale">
+                  <div class="exp" id="maneuveringExp"></div>
+                  <div class="pro" id="maneuveringPro"></div>
+                </div><button id="maneuveringBonus">+0</button> Maneuvering
+                <span class="advdis" style=><i class="fa-solid"></i></span>
+              </div>
+
+
+            </div>
+          </div>
+          <div id="Con" class="miniStatBlock">
+
+            <div class="attributeBlock con">
+              <div class="bonus">+0</div>
+              <div class="attribute">10</div>
+            </div>
+
+            <div class="skillBlock">
+              <h3>Constitution</h3>
+
+              <div class="skill save con">
+                <div class="profScale">
+                  <div class="exp" id="conSaveExp"></div>
+                  <div class="pro" id="conSavePro"></div>
+                </div><button id="conSaveBonus">+0</button> <b>Saving Throw</b>
+                <span class="advdis" style=><i class="fa-solid"></i></span>
+              </div>
+
+              <div class="skill patch con">
+                <div class="profScale">
+                  <div class="exp" id="patchExp"></div>
+                  <div class="pro" id="patchPro"></div>
+                </div><button id="patchBonus">+0</button> Patch
+                <span class="advdis" style=><i class="fa-solid"></i></span>
+              </div>
+
+              <div class="skill regulation con">
+                <div class="profScale">
+                  <div class="exp" id="regulationExp"></div>
+                  <div class="pro" id="regulationProf"></div>
+                </div><button id="regulationBonus">+0</button> Regulation
+                <span class="advdis" style=><i class="fa-solid"></i></span>
+              </div>
+
+
+
+            </div>
+
+          </div>
+          <div id="Int" class="miniStatBlock">
+
+            <div class="attributeBlock int">
+              <div class="bonus">+0</div>
+              <div class="attribute">10</div>
+
+            </div>
+            <div class="skillBlock">
+              <h3>Intelligence</h3>
+
+              <div class="skill save int">
+                <div class="profScale">
+                  <div class="exp" id="intSaveExp"></div>
+                  <div class="pro" id="intSavePro"></div>
+                </div><button id="intSaveBonus">+0</button> <b>Saving Throw</b>
+                <span class="advdis" style=><i class="fa-solid"></i></span>
+              </div>
+
+              <div class="skill astrogation int">
+                <div class="profScale">
+                  <div class="exp" id="astrogationExp"></div>
+                  <div class="pro" id="astrogationPro"></div>
+                </div><button id="astrogationSaveBonus">+0</button> Astrogation
+                <span class="advdis" style=><i class="fa-solid"></i></span>
+              </div>
+
+              <div class="skill data int">
+                <div class="profScale">
+                  <div class="exp" id="dataExp"></div>
+                  <div class="pro" id="dataPro"></div>
+                </div><button id="dataBonus">+0</button> Data
+                <span class="advdis" style=><i class="fa-solid"></i></span>
+              </div>
+
+              <div class="skill probe int">
+                <div class="profScale">
+                  <div class="exp" id="probeExp"></div>
+                  <div class="pro" id="probePro"></div>
+                </div><button id="probeBonus">+0</button> Probe
+                <span class="advdis" style=><i class="fa-solid"></i></span>
+              </div>
+
+
+            </div>
+          </div>
+          <div id="Wis" class="miniStatBlock">
+
+            <div class="attributeBlock wis">
+              <div class="bonus">+0</div>
+              <div class="attribute">10</div>
+
+            </div>
+
+            <div class="skillBlock">
+              <h3>Wisdom</h3>
+              <div class="skill save wis">
+                <div class="profScale">
+                  <div class="exp" id="intSaveExp"></div>
+                  <div class="pro" id="intSavePro"></div>
+                </div><button id="intSaveBonus">+0</button> <b>Saving Throw</b>
+                <span class="advdis" style=><i class="fa-solid"></i></span>
+              </div>
+
+              <div class="skill scan wis">
+                <div class="profScale">
+                  <div class="exp" id="scanExp"></div>
+                  <div class="pro" id="scanPro"></div>
+                </div><button id="scanBonus">+0</button> Scan
+                <span class="advdis" style=><i class="fa-solid"></i></span>
+              </div>
+
+
+            </div>
+          </div>
+          <div id="Cha" class="miniStatBlock">
+
+            <div class="attributeBlock cha">
+              <div class="bonus">+0</div>
+              <div class="attribute">10</div>
+
+            </div>
+
+            <div class="skillBlock">
+              <h3>Charisma</h3>
+
+              <div class="skill save cha">
+                <div class="profScale">
+                  <div class="exp" id="chaSaveExp"></div>
+                  <div class="pro" id="chaSavePro"></div>
+                </div><button id="chaSaveBonus">+0</button> <b>Saving Throw</b>
+                <span class="advdis" style=><i class="fa-solid"></i></span>
+              </div>
+
+              <div class="skill impress cha">
+                <div class="profScale">
+                  <div class="exp" id="impressExp"></div>
+                  <div class="pro" id="impressPro"></div>
+                </div><button id="impressBonus">+0</button> Impress
+                <span class="advdis" style=><i class="fa-solid"></i></span>
+              </div>
+
+              <div class="skill interfere cha">
+                <div class="profScale">
+                  <div class="exp" id="interfereExp"></div>
+                  <div class="pro" id="interferePro"></div>
+                </div><button id="interfereBonus">+0</button> Interfere
+                <span class="advdis" style=><i class="fa-solid"></i></span>
+              </div>
+              <div class="skill menace cha">
+                <div class="profScale">
+                  <div class="exp" id="menaceExp"></div>
+                  <div class="pro" id="menacePro"></div>
+                </div><button id="menaceBonus">+0</button> Menace
+                <span class="advdis" style=><i class="fa-solid"></i></span>
+              </div>
+              <div class="skill swindle cha">
+                <div class="profScale">
+                  <div class="exp" id="swindleExp"></div>
+                  <div class="pro" id="swindlePro"></div>
+                </div><button id="swindleBonus">+0</button> Swindle
+                <span class="advdis" style=><i class="fa-solid"></i></span>
+              </div>
+
+
+
+            </div>
+          </div>
+        </div> <!--end of stats.bigGroup block-->
+        <!--<div class="bigGroup" style="display: inline-block;" >stats</div>-->
+
+
+        <div class="bigGroup" id="combat" style="display: none;">combat stuff</div>
+        <div class="bigGroup" style="display: none;">ship information stuff</div>
+        <div class="bigGroup" style="display: none;">modifications</div>
+        <div class="bigGroup" style="display: none;">storage</div>
+        <div class="bigGroup" style="display: none;">crew</div>
+        <div class="bigGroup" style="display: none;">extras (things like ships, large constructs, or just general
+          notes)
+        </div>
+      </div>
+
+
+    </div> <!--end of 1st content block-->
+
+    <div class="cont">
+      <div class="flex-container sectionSelection">
+        <span class="flex-item active"><span class="bttn"><i class="fa-solid fa-dice-d20 fa-fw"
+              title="Skills & Saves"></i></span></span><!--base stats & skills/saves group-->
+        <span class="flex-item"><span class="bttn"><i class="fa-solid fa-fist-raised fa-fw"
+              title="Combat"></i></span></span> <!--combat stuff -->
+        <span class="flex-item"><span class="bttn"><i class="fa-solid fa-rocket fa-fw"
+              title="Ship Information"></i></span></span><!--ship info -->
+        <span class="flex-item"><span class="bttn"><i class="fa-solid fa-hammer fa-fw"
+              title="Mods"></i></span></span><!--modifications -->
+        <span class="flex-item"><span class="bttn"><i class="fa-solid fa-cart-flatbed-suitcase fa-fw"
+              title="Storage"></i></span></span><!--storage-->
+        <span class="flex-item"><span class="bttn"><i class="fa-solid fa-users fa-fw"
+              title="Crew"></i></span></span><!--crew-->
+        <span class="flex-item"><span class="bttn"><i class="fa-solid fa-note-sticky fa-fw"
+              title="Extras"></i></span></span><!--extras-->
+      </div>
+      <div id="sectionDisp">
+
+
+        <div class="bigGroup" style="display: inline-block;">stats</div>
+        <div class="bigGroup" style="display: none;">combat stuff</div>
+        <div class="bigGroup" style="display: none;">ship information stuff</div>
+        <div class="bigGroup" style="display: none;">modifications</div>
+        <div class="bigGroup" style="display: none;">storage</div>
+        <div class="bigGroup" style="display: none;">crew</div>
+        <div class="bigGroup" style="display: none;">extras</div>
+      </div>
+    </div><!--end of 2nd content block-->
+
+    <div class="cont">
+      <div class="flex-container sectionSelection">
+        <span class="flex-item active"><span class="bttn"><i class="fa-solid fa-dice-d20 fa-fw"
+              title="Skills & Saves"></i></span></span><!--base stats & skills/saves group-->
+        <span class="flex-item"><span class="bttn"><i class="fa-solid fa-fist-raised fa-fw"
+              title="Combat"></i></span></span> <!--combat stuff -->
+        <span class="flex-item"><span class="bttn"><i class="fa-solid fa-rocket fa-fw"
+              title="Ship Information"></i></span></span><!--ship info -->
+        <span class="flex-item"><span class="bttn"><i class="fa-solid fa-hammer fa-fw"
+              title="Mods"></i></span></span><!--modifications -->
+        <span class="flex-item"><span class="bttn"><i class="fa-solid fa-cart-flatbed-suitcase fa-fw"
+              title="Storage"></i></span></span><!--storage-->
+        <span class="flex-item"><span class="bttn"><i class="fa-solid fa-users fa-fw"
+              title="Crew"></i></span></span><!--crew-->
+        <span class="flex-item"><span class="bttn"><i class="fa-solid fa-note-sticky fa-fw"
+              title="Extras"></i></span></span><!--extras-->
+      </div>
+      <div id="sectionDisp">
+
+
+        <div class="bigGroup" style="display: inline-block;">stats</div>
+        <div class="bigGroup" style="display: none;">combat stuff</div>
+        <div class="bigGroup" style="display: none;">ship information stuff</div>
+        <div class="bigGroup" style="display: none;">modifications</div>
+        <div class="bigGroup" style="display: none;">storage</div>
+        <div class="bigGroup" style="display: none;">crew</div>
+        <div class="bigGroup" style="display: none;">extras</div>
+      </div>
+    </div><!--end of 3rd content block-->
+
+
+    <!--commenting the js code out so it'll run locally and i don't need to run fenix -->
+
+    <!-- <script type="module" src="./js/Starship.js"></script> -->
+
+  </div>
+</body>
+<script>
+ 
+</script>
+</html>
