@@ -1,6 +1,7 @@
 <script setup>
-import miniStatBlock from '../components/miniStatBlock.vue'
+import sheetBlock from '../components/sheetBlock.vue';
 import navbar from '../components/navbar.vue';
+
 var skillDist = {
     "str": ["boost", "ram"],
     "dex": ["hide", "maneuvering"],
@@ -9,26 +10,15 @@ var skillDist = {
     "wis": ["scan"],
     "cha": ["impress", "interfere", "menace", "swindle"]
 } 
+
+
 </script>
 
 <template>
     <main>
         <div class="cont">
-            
                 <navbar />
-            
-
-            <div class="sectionBlock">
-                <miniStatBlock stat="str" :skills=skillDist.str statName="Strength" />
-                
-                <miniStatBlock stat="dex" :skills=skillDist.dex statName="Dexterity" />
-                <miniStatBlock stat="con" :skills=skillDist.con statName="Constitution" />
-                <miniStatBlock stat="int" :skills=skillDist.int statName="Intelligence" />
-                <miniStatBlock stat="wis" :skills=skillDist.wis statName="Wisdom" />
-                <miniStatBlock stat="cha" :skills=skillDist.cha statName="Charisma" />
-                
-            </div>
-
+                <sheetBlock />
         </div>
     </main>
 </template>

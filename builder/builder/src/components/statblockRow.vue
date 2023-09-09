@@ -8,11 +8,13 @@ import shipsheet from "../script/shipsheet.js"
 
 
 var ship = new shipsheet
+
 const props = defineProps({
     info: Object,
     skillname: String
 })
 
+//CALCULATE ACCURATE DISPLAYS  
 
 
 var temp = {
@@ -33,8 +35,12 @@ var temp = {
 //if calc = false (aka,a total override is filled), then defaults remain. and only the "total"/applied bonus applies. 
 
 function dispName() {
-    return props.info.dispName
-}
+    var modified = false
+    var temp = props.info.dispName
+    if (modified == true) {
+        temp = temp + "*"
+    } 
+    return temp}
 
 function show(event) {
     alert(props.skillname)
@@ -44,7 +50,11 @@ function show(event) {
         console.log(event.target.tagName)
     }
 }
-
+/*
+function calcBonus() {
+console.log(ship.getSkillInfo(props.skillname))
+}
+*/
 //calculatedIDnames 
 function rowID() {
     return props.skillname + " skill " + props.info.baseStat
@@ -58,6 +68,8 @@ function proID() {
 function expID() {
     return props.skillname + "Exp"
 }
+
+//OLD METHOD // 
 function totalDisp() {
     if (props.info.total < 0) {
         return props.info.total
@@ -81,7 +93,7 @@ defineExpose({
             <div class="pro" :id=proID()></div>
         </span>
         <button :id=buttonID()>{{ totalDisp() }}</button>
-        <span @click="show">{{ dispName() }}*</span>
+        <span @click="show">{{ dispName() }}</span>
         <span class="advdis" style=""><i class="fa-solid"></i>
             <font-awesome-icon icon="a" fixed-width class="adv" v-if="temp.adv == 2" />
             <font-awesome-icon icon="d" fixed-width class="dis" v-else-if="temp.adv == 0" />

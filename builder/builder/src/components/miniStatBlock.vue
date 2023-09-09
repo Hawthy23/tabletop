@@ -15,8 +15,10 @@ import { Fragment } from "vue";
 
 var skills = props.skills
 
-
+//GOTTA CALCULATE accurate saves first 
 var saveCheckData = shipData.saves[props.stat]
+
+
 
 var skillData = shipData.skills
 var tempData = []
@@ -54,7 +56,7 @@ var k
             <h3>{{ statName }}</h3>
             <!-- save is always first-->
             <statblockRow skillname="save" :info=saveCheckData />
-            <!-- then loop through skills (str array) and grab relevant temp data and display it? -->
+            <!-- then loop through skills(str array) and grab relevant temp data and display it? -->
             <statblockRow v-for="k in props.skills" :info=shipData.skills[k] :skillname=k />
 
         </div>

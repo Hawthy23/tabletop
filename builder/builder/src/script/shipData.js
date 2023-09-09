@@ -33,7 +33,7 @@ var shipData = {
         "str": {
             "dispName":"Saving Throw",
             "baseStat": "str",
-            "total": 5, //should total to 2+2 with adv
+            "total": 5, 
             "prof": 1, //not prof, 0=not, 1=prof, 2=expert, 3=extra
             "adv": 0, //0 = dis, 1=reg, 2=adv
             "magicBonus": 0,
@@ -51,7 +51,7 @@ var shipData = {
         "dex": {
             "dispName":"Saving Throw",
             "baseStat": "dex",
-            "total": 0, //should total to 2+2 with adv
+            "total": 4 , //should total to 2+2 with adv
             "prof": 0, //not prof, 0=not, 1=prof, 2=expert, 3=extra
             "adv": 1, //0 = dis, 1=reg, 2=adv
             "magicBonus": 0,
