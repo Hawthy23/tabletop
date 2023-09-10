@@ -40,7 +40,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":false,
+                "calcTotal":"",
                 "total": "",
                 "prof": "",
                 "adv": "",
@@ -58,7 +58,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":false,
+                "calcTotal":"",
                 "total": "",
                 "prof": "",
                 "adv": "",
@@ -76,7 +76,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":false,
+                "calcTotal":"",
                 "total": "",
                 "prof": "",
                 "adv": "",
@@ -94,7 +94,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":false,
+                "calcTotal":"",
                 "total": "",
                 "prof": "",
                 "adv": "",
@@ -112,7 +112,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":false,
+                "calcTotal":"",
                 "total": "",
                 "prof": "",
                 "adv": "",
@@ -130,7 +130,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":false,
+                "calcTotal":"",
                 "total": "",
                 "prof": "",
                 "adv": "",
@@ -149,11 +149,11 @@ var shipData = {
             "adv": 2, //0 = dis, 1=reg, 2=adv
             "magicBonus": 0,
             "miscBonus": 0,
-            "overrideFlag": false,
+            "overrideFlag": true,
             "overrides": {
-                "calcTotal":false,
+                "calcTotal":"",
                 "baseStat": "",
-                "total": "",
+                "total": "13",
                 "prof": "",
                 "adv": "",
                 "magicBonus": "",
@@ -170,7 +170,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":false,
+                "calcTotal":"",
                 "baseStat": "",
                 "total": "",
                 "prof": "",
@@ -189,7 +189,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":false,
+                "calcTotal":"",
                 "baseStat": "",
                 "total": "",
                 "prof": "",
@@ -208,7 +208,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":false,
+                "calcTotal":"",
                 "baseStat": "",
                 "total": "",
                 "prof": "",
@@ -227,7 +227,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":false,
+                "calcTotal":"",
                 "baseStat": "",
                 "total": "",
                 "prof": "",
@@ -246,7 +246,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":false,
+                "calcTotal":"",
                 "baseStat": "",
                 "total": "",
                 "prof": "",
@@ -265,7 +265,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":false,
+                "calcTotal":"",
                 "baseStat": "",
                 "total": "",
                 "prof": "",
@@ -284,7 +284,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":false,
+                "calcTotal":"",
                 "baseStat": "",
                 "total": "",
                 "prof": "",
@@ -303,7 +303,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":false,
+                "calcTotal":"",
                 "baseStat": "",
                 "total": "",
                 "prof": "",
@@ -322,7 +322,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":false,
+                "calcTotal":"",
                 "baseStat": "",
                 "total": "",
                 "prof": "",
@@ -341,7 +341,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":false,
+                "calcTotal":"",
                 "baseStat": "",
                 "total": "",
                 "prof": "",
@@ -360,7 +360,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":false,
+                "calcTotal":"",
                 "baseStat": "",
                 "total": "",
                 "prof": "",
@@ -379,7 +379,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":false,
+                "calcTotal":"",
                 "baseStat": "",
                 "total": "",
                 "prof": "",
@@ -398,7 +398,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":false,
+                "calcTotal":"",
                 "baseStat": "",
                 "total": "",
                 "prof": "",

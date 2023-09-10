@@ -48,68 +48,64 @@ export default class shipsheet {
         if (div != "") { div.style.display = "none" }
     }
     getSkillInfo(name) {
-        var skillblock = document.querySelector(".skillBlock > .skill." + name)
-        var children = skillblock.children
-    
-        var skillInfo
+        var name = name.toString()
+        var skillInfo = shipData.skills[name]
         if (name.includes("save")) {
-            skillInfo = shipData.saves[name.split(".")[1]]
-        }
-        else {
-            skillInfo = shipData.skills[name]
-        }
+            var skillInfo = shipData.saves[name.split(" ")[1]]
+        } 
+        
         var profBonus = shipData.profBonus
-    
-    
-    
-        //set working data to the defaults 
         var workingData = {
+            dispName: skillInfo.dispName,
             baseStat: skillInfo.baseStat,
             total: skillInfo.total,
             prof: skillInfo.prof,
             adv: skillInfo.adv,
             magicBonus: skillInfo.magicBonus,
-            miscBonus: skillInfo.miscBonus
+            miscBonus: skillInfo.miscBonus,
+            overrideFlag: skillInfo.overrideFlag,
+            overrides: {
+                calcTotal: skillInfo.overrides.calcTotal,
+                baseStat: skillInfo.overrides.baseStat,
+                total: skillInfo.overrides.total,
+                prof: skillInfo.overrides.prof,
+                adv: skillInfo.overrides.adv,
+                magicBonus: skillInfo.overrides.magicBonus,
+                miscBonus: skillInfo.overrides.miscBonus
+            }
         }
+
+        //set working data to the defaults 
     
-    
+
+
         //calculating new total? (currently needed, but won't later. )
         skillInfo.total = (Number(skillInfo.prof) * Number(profBonus)) + Number(shipData.baseStat[skillInfo.baseStat].bonus) + Number(skillInfo.magicBonus) + Number(skillInfo.miscBonus)
         workingData.total = skillInfo.total
         var displayTotal = skillInfo.total
-    
+
         //check for overrides: 
         if (skillInfo.overrideFlag == true) {
-    
+
             var ovveridesArray = Object.keys(skillInfo.overrides)
             const len = (ovveridesArray.length)
             for (let index = 0; index < len; index++) {
                 const element = skillInfo.overrides[ovveridesArray[index]]
                 if (element != "") {
-    
+
                     workingData[Object.keys(skillInfo.overrides)[index]] = element
-    
+
                 }
             }
-    
-            //calculate new display total but if an override total is specified it's that instead. 
-    
-            displayTotal = (Number(workingData.prof) * Number(profBonus)) + Number(shipData.baseStat[workingData.baseStat].bonus) + Number(workingData.magicBonus) + Number(workingData.miscBonus)
-    
-            if (skillInfo.overrides.total != "") {
-                workingData.total = workingData.total
-            }
-            else {
-                workingData.total = Number(displayTotal)
-            }
-    
-    
+
+
+            workingData.overrides.calcTotal = (Number(workingData.prof) * Number(profBonus)) + Number(shipData.baseStat[workingData.baseStat].bonus) + Number(workingData.magicBonus) + Number(workingData.miscBonus)
         }
         return workingData
-    
+
     }
-    
-    
+
+
 }
 
 

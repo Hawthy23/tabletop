@@ -4,43 +4,27 @@
  * Display proficiently eqquiped/expertly equipped
  * 
  */
+import { faL } from "@fortawesome/free-solid-svg-icons";
 import shipsheet from "../script/shipsheet.js"
-
-
-var ship = new shipsheet
-
 const props = defineProps({
     info: Object,
     skillname: String
 })
 
+var overrideFlag = props.info.overrideFlag
+
+var ship = new shipsheet
+
 //CALCULATE ACCURATE DISPLAYS  
 
-
-var temp = {
-    total: props.info.total,
-    prof: props.info.prof,
-    adv: props.info.adv,
-    override: props.info.overrideFlag
-}
-
-
-//if overrideFlag? = true.
-//add an asterisk to the name of the skill. 
-//bonus disp = total. 
-
-//if calculated = true; //if calc = true, then appropriate math has been done already (in the total spot) 
-//placeholder prof ;check if override prof is different than regular.
-//placeholder adv; check if adv is different than regular. 
-//if calc = false (aka,a total override is filled), then defaults remain. and only the "total"/applied bonus applies. 
-
 function dispName() {
-    var modified = false
+
     var temp = props.info.dispName
-    if (modified == true) {
+    if (overrideFlag == true) {
         temp = temp + "*"
-    } 
-    return temp}
+    }
+    return temp
+}
 
 function show(event) {
     alert(props.skillname)
@@ -50,11 +34,42 @@ function show(event) {
         console.log(event.target.tagName)
     }
 }
-/*
-function calcBonus() {
-console.log(ship.getSkillInfo(props.skillname))
+
+//advantage, exp, and pro
+var adv = props.info.adv
+if (overrideFlag) {
+    if (props.info.overrides.adv != "") {
+        adv = props.info.overrides.adv
+    }
 }
-*/
+var prof = props.info.prof
+if (overrideFlag) {
+    if (props.info.overrides.prof != "") {
+        adv = props.info.overrides.prof
+    }
+}
+
+//prof 0 is not prof, 1 is prof, 2 is expert, 3 is extra* (3 is specific and funky case)
+
+var isExp = false
+var isPro = false
+switch (prof) {
+    case 1: //proficient
+        isPro = true
+        isExp = false
+        break;
+    case 2: //expert
+        isPro = false
+        isExp = true
+        break;
+    //case 3: //special usecase will work later. 
+    // break;
+    default:
+        isPro = false
+        isExp = false
+        break;
+}
+
 //calculatedIDnames 
 function rowID() {
     return props.skillname + " skill " + props.info.baseStat
@@ -69,15 +84,27 @@ function expID() {
     return props.skillname + "Exp"
 }
 
-//OLD METHOD // 
+//display functions
 function totalDisp() {
+    var total = props.info.total
+
+    if (overrideFlag == true) {
+        if (props.info.overrides.total != "") {
+            total = props.info.overrides.total
+        }
+        else {
+            total = props.info.overrides.calcTotal
+        }
+    }
+
     if (props.info.total < 0) {
-        return props.info.total
+        return total
     }
     else {
-        return "+" + props.info.total
+        return "+" + total
     }
 }
+
 
 
 defineExpose({
@@ -89,27 +116,27 @@ defineExpose({
 <template>
     <div class="skillRow" :id=rowID()>
         <span class="profScale">
-            <div class="exp" :id=expID()></div>
-            <div class="pro" :id=proID()></div>
+            <div class="exp" :class="{ fill: isExp }" ></div>
+            <div class="pro" :class="{ fill: isPro }" ></div>
         </span>
-        <button :id=buttonID()>{{ totalDisp() }}</button>
+        <button :class=buttonID()>{{ totalDisp() }}</button>
         <span @click="show">{{ dispName() }}</span>
         <span class="advdis" style=""><i class="fa-solid"></i>
-            <font-awesome-icon icon="a" fixed-width class="adv" v-if="temp.adv == 2" />
-            <font-awesome-icon icon="d" fixed-width class="dis" v-else-if="temp.adv == 0" />
+            <font-awesome-icon icon="a" fixed-width class="adv" v-if="adv == 2" />
+            <font-awesome-icon icon="d" fixed-width class="dis" v-else-if="adv == 0" />
         </span>
     </div>
 </template>
 
 <style>
 .skillRow {
-    
+
     padding: 2%;
 }
 
 button {
-    
-    margin-right : 2%;
+
+    margin-right: 2%;
 }
 
 .advdis {
@@ -122,7 +149,9 @@ button {
     padding-left: 1%;
 }
 
-
+.fill {
+    background-color: black;
+}
 
 .exp {
     float: left;

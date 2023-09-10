@@ -14,26 +14,23 @@ import shipData from "../script/shipData"
 import { Fragment } from "vue";
 
 var skills = props.skills
-
 //GOTTA CALCULATE accurate saves first 
-var saveCheckData = shipData.saves[props.stat]
-
-
+var saveCheckData = ship.getSkillInfo("save " + props.stat)
 
 var skillData = shipData.skills
+
+
+
 var tempData = []
 for (let index = 0; index < skills.length; index++) {
     var element = skills[index];
     var t =
     {
-        "info": skillData[element],
+        "info": ship.getSkillInfo(element),
         "skillName": element
     }
     tempData.push(t)
-
 }
-
-
 //calculated ids & classes
 function getblock() {
     return "attributeBlock " + props.stat
