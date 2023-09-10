@@ -2,7 +2,7 @@
 import navButtons from './navButtons.vue';
 </script>
 <template>
-    <div class="flex-container sectionSelection">
+    <div class="flex-container sectionSelection full">
         <navButtons icon="dice-d20" id="skilBttn" class="active" title="Skills & Saves" />
         <navButtons icon="fist-raised" id="combatBttn" title="Combat" />
         <navButtons icon="rocket" id="shipBttn" title="Ship Information" />
@@ -13,9 +13,4 @@ import navButtons from './navButtons.vue';
     </div>
 </template>
 <style>
-.flex-container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-}
 </style>

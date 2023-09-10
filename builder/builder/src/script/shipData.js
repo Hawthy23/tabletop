@@ -1,6 +1,9 @@
 
 var shipData = {
-    "name": "No Engraving Please",
+    "shipName": "No Engraving Please",
+    "shipSize": "Tiny",
+    "ShipTier": 0,
+    "tierRole": ["IDK", "", "", "", ""], //5 tiers available?
     "profBonus": 2,
     "hullStats": {
         "current": 40,
@@ -13,6 +16,7 @@ var shipData = {
     },
     "shieldStats": {
         "current": 40,
+        "max":40,
         "temp": 5,
         "regenRate": 1,
         "capacity": 1,
@@ -31,16 +35,16 @@ var shipData = {
     },
     "saves": {
         "str": {
-            "dispName":"Saving Throw",
+            "dispName": "Saving Throw",
             "baseStat": "str",
-            "total": 5, 
+            "total": 5,
             "prof": 1, //not prof, 0=not, 1=prof, 2=expert, 3=extra
             "adv": 0, //0 = dis, 1=reg, 2=adv
             "magicBonus": 0,
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":"",
+                "calcTotal": "",
                 "total": "",
                 "prof": "",
                 "adv": "",
@@ -49,16 +53,16 @@ var shipData = {
             }
         },
         "dex": {
-            "dispName":"Saving Throw",
+            "dispName": "Saving Throw",
             "baseStat": "dex",
-            "total": 4 , //should total to 2+2 with adv
+            "total": 4, //should total to 2+2 with adv
             "prof": 0, //not prof, 0=not, 1=prof, 2=expert, 3=extra
             "adv": 1, //0 = dis, 1=reg, 2=adv
             "magicBonus": 0,
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":"",
+                "calcTotal": "",
                 "total": "",
                 "prof": "",
                 "adv": "",
@@ -67,7 +71,7 @@ var shipData = {
             }
         },
         "con": {
-            "dispName":"Saving Throw",
+            "dispName": "Saving Throw",
             "baseStat": "con",
             "total": 0, //should total to 2+2 with adv
             "prof": 1, //not prof, 0=not, 1=prof, 2=expert, 3=extra
@@ -76,7 +80,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":"",
+                "calcTotal": "",
                 "total": "",
                 "prof": "",
                 "adv": "",
@@ -85,7 +89,7 @@ var shipData = {
             }
         },
         "int": {
-            "dispName":"Saving Throw",
+            "dispName": "Saving Throw",
             "baseStat": "int",
             "total": 0, //should total to 2+2 with adv
             "prof": 0, //not prof, 0=not, 1=prof, 2=expert, 3=extra
@@ -94,7 +98,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":"",
+                "calcTotal": "",
                 "total": "",
                 "prof": "",
                 "adv": "",
@@ -103,7 +107,7 @@ var shipData = {
             }
         },
         "wis": {
-            "dispName":"Saving Throw",
+            "dispName": "Saving Throw",
             "baseStat": "wis",
             "total": 0, //should total to 2+2 with adv
             "prof": 0, //not prof, 0=not, 1=prof, 2=expert, 3=extra
@@ -112,7 +116,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":"",
+                "calcTotal": "",
                 "total": "",
                 "prof": "",
                 "adv": "",
@@ -121,7 +125,7 @@ var shipData = {
             }
         },
         "cha": {
-            "dispName":"Saving Throw",
+            "dispName": "Saving Throw",
             "baseStat": "cha",
             "total": 0, //should total to 2+2 with adv
             "prof": 0, //not prof, 0=not, 1=prof, 2=expert, 3=extra
@@ -130,7 +134,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":"",
+                "calcTotal": "",
                 "total": "",
                 "prof": "",
                 "adv": "",
@@ -142,7 +146,7 @@ var shipData = {
     },
     "skills": {
         "boost": {
-            "dispName":"Boost",
+            "dispName": "Boost",
             "baseStat": "str",
             "total": 8, //should total to 2+2 with adv
             "prof": 0, //not prof, 0=not, 1=prof, 2=expert, 3=extra
@@ -151,7 +155,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": true,
             "overrides": {
-                "calcTotal":"",
+                "calcTotal": "",
                 "baseStat": "",
                 "total": "13",
                 "prof": "",
@@ -161,7 +165,7 @@ var shipData = {
             }
         },
         "ram": {
-            "dispName":"Ram",
+            "dispName": "Ram",
             "baseStat": "str",
             "total": 0,
             "prof": 0, //not prof, 0=not, 1=prof, 2=expert, 3=extra
@@ -170,7 +174,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":"",
+                "calcTotal": "",
                 "baseStat": "",
                 "total": "",
                 "prof": "",
@@ -180,7 +184,7 @@ var shipData = {
             }
         },
         "hide": {
-            "dispName":"Hide",
+            "dispName": "Hide",
             "baseStat": "dex",
             "total": -4,
             "prof": 1, //not prof, 0=not, 1=prof, 2=expert, 3=extra
@@ -189,7 +193,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":"",
+                "calcTotal": "",
                 "baseStat": "",
                 "total": "",
                 "prof": "",
@@ -199,7 +203,7 @@ var shipData = {
             }
         },
         "maneuvering": {
-            "dispName":"Maneuvering",
+            "dispName": "Maneuvering",
             "baseStat": "dex",
             "total": 0,
             "prof": 0, //not prof, 0=not, 1=prof, 2=expert, 3=extra
@@ -208,7 +212,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":"",
+                "calcTotal": "",
                 "baseStat": "",
                 "total": "",
                 "prof": "",
@@ -218,7 +222,7 @@ var shipData = {
             }
         },
         "patch": {
-            "dispName":"Patch",
+            "dispName": "Patch",
             "baseStat": "con",
             "total": 0,
             "prof": 0, //not prof, 0=not, 1=prof, 2=expert, 3=extra
@@ -227,7 +231,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":"",
+                "calcTotal": "",
                 "baseStat": "",
                 "total": "",
                 "prof": "",
@@ -237,7 +241,7 @@ var shipData = {
             }
         },
         "regulation": {
-            "dispName":"Regulation",
+            "dispName": "Regulation",
             "baseStat": "con",
             "total": 0,
             "prof": 2, //not prof, 0=not, 1=prof, 2=expert, 3=extra
@@ -246,7 +250,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":"",
+                "calcTotal": "",
                 "baseStat": "",
                 "total": "",
                 "prof": "",
@@ -256,7 +260,7 @@ var shipData = {
             }
         },
         "astrogation": {
-            "dispName":"Astrogation",
+            "dispName": "Astrogation",
             "baseStat": "int",
             "total": 0,
             "prof": 0, //not prof, 0=not, 1=prof, 2=expert, 3=extra
@@ -265,7 +269,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":"",
+                "calcTotal": "",
                 "baseStat": "",
                 "total": "",
                 "prof": "",
@@ -275,7 +279,7 @@ var shipData = {
             }
         },
         "data": {
-            "dispName":"Data",
+            "dispName": "Data",
             "baseStat": "int",
             "total": 0,
             "prof": 0, //not prof, 0=not, 1=prof, 2=expert, 3=extra
@@ -284,7 +288,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":"",
+                "calcTotal": "",
                 "baseStat": "",
                 "total": "",
                 "prof": "",
@@ -294,7 +298,7 @@ var shipData = {
             }
         },
         "probe": {
-            "dispName":"Probe",
+            "dispName": "Probe",
             "baseStat": "int",
             "total": 0,
             "prof": 0, //not prof, 0=not, 1=prof, 2=expert, 3=extra
@@ -303,7 +307,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":"",
+                "calcTotal": "",
                 "baseStat": "",
                 "total": "",
                 "prof": "",
@@ -313,7 +317,7 @@ var shipData = {
             }
         },
         "scan": {
-            "dispName":"Scan",
+            "dispName": "Scan",
             "baseStat": "wis",
             "total": 0,
             "prof": 0, //not prof, 0=not, 1=prof, 2=expert, 3=extra
@@ -322,7 +326,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":"",
+                "calcTotal": "",
                 "baseStat": "",
                 "total": "",
                 "prof": "",
@@ -332,7 +336,7 @@ var shipData = {
             }
         },
         "impress": {
-            "dispName":"Impress",
+            "dispName": "Impress",
             "baseStat": "cha",
             "total": 0,
             "prof": 0, //not prof, 0=not, 1=prof, 2=expert, 3=extra
@@ -341,7 +345,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":"",
+                "calcTotal": "",
                 "baseStat": "",
                 "total": "",
                 "prof": "",
@@ -351,7 +355,7 @@ var shipData = {
             }
         },
         "interfere": {
-            "dispName":"Interfere",
+            "dispName": "Interfere",
             "baseStat": "cha",
             "total": 0,
             "prof": 0, //not prof, 0=not, 1=prof, 2=expert, 3=extra
@@ -360,7 +364,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":"",
+                "calcTotal": "",
                 "baseStat": "",
                 "total": "",
                 "prof": "",
@@ -370,7 +374,7 @@ var shipData = {
             }
         },
         "menace": {
-            "dispName":"Menace",
+            "dispName": "Menace",
             "baseStat": "cha",
             "total": 0,
             "prof": 0, //not prof, 0=not, 1=prof, 2=expert, 3=extra
@@ -379,7 +383,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":"",
+                "calcTotal": "",
                 "baseStat": "",
                 "total": "",
                 "prof": "",
@@ -389,7 +393,7 @@ var shipData = {
             }
         },
         "swindle": {
-            "dispName":"Swindle",
+            "dispName": "Swindle",
             "baseStat": "cha",
             "total": 0,
             "prof": 0, //not prof, 0=not, 1=prof, 2=expert, 3=extra
@@ -398,7 +402,7 @@ var shipData = {
             "miscBonus": 0,
             "overrideFlag": false,
             "overrides": {
-                "calcTotal":"",
+                "calcTotal": "",
                 "baseStat": "",
                 "total": "",
                 "prof": "",

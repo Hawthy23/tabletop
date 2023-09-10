@@ -1,5 +1,8 @@
 <script setup>
 import miniStatBlock from './miniStatBlock.vue';
+const props = defineProps({
+    data: Object
+})
 
 var skillDist = {
     "str": ["boost", "ram"],
@@ -10,16 +13,19 @@ var skillDist = {
     "cha": ["impress", "interfere", "menace", "swindle"]
 } 
 </script>
+<script>
+
+</script>
 
 <template>
     <div class = "contBar">
         <div class="sectionBlock show"> <!-- stats -->
-            <miniStatBlock stat="str" :skills=skillDist.str statName="Strength" />
-            <miniStatBlock stat="dex" :skills=skillDist.dex statName="Dexterity" />
-            <miniStatBlock stat="con" :skills=skillDist.con statName="Constitution" />
-            <miniStatBlock stat="int" :skills=skillDist.int statName="Intelligence" />
-            <miniStatBlock stat="wis" :skills=skillDist.wis statName="Wisdom" />
-            <miniStatBlock stat="cha" :skills=skillDist.cha statName="Charisma" />
+            <miniStatBlock stat="str" :skills=skillDist.str statName="Strength" :data=props.data />
+            <miniStatBlock stat="dex" :skills=skillDist.dex statName="Dexterity" :data=props.data />
+            <miniStatBlock stat="con" :skills=skillDist.con statName="Constitution" :data=props.data />
+            <miniStatBlock stat="int" :skills=skillDist.int statName="Intelligence" :data=props.data />
+            <miniStatBlock stat="wis" :skills=skillDist.wis statName="Wisdom" :data=props.data />
+            <miniStatBlock stat="cha" :skills=skillDist.cha statName="Charisma" :data=props.data />
         </div>
         
         <div class="sectionBlock"><!-- combat --> <h3>combat info</h3> <br /> more stuff here. </div>

@@ -136,12 +136,7 @@ for (let i = 0; i < disp.length; i++) {
 
 }
 
-.flex-item {
-    flex: 1;
-    text-align: center;
-}
-
-.flex-item:hover {
+.sectionSelection>.flex-item:hover {
     background-color: lightgray;
 }
 

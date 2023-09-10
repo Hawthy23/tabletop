@@ -3,21 +3,19 @@ const props = defineProps({
     stat: String,
     skills: Array,
     statName: String,
+    data:Object
 })
 
 
-import { defineComponent } from 'vue'
 import shipsheet from "../script/shipsheet.js"
 import statblockRow from "./statblockRow.vue";
 var ship = new shipsheet
-import shipData from "../script/shipData"
-import { Fragment } from "vue";
-
+var shipData = props.data
 var skills = props.skills
 //GOTTA CALCULATE accurate saves first 
 var saveCheckData = ship.getSkillInfo("save " + props.stat)
 
-var skillData = shipData.skills
+
 
 
 
@@ -70,6 +68,15 @@ var k
     width: calc(100% - 20%);
 }
 
+
+.miniStatBlock {
+
+float: left;
+margin: 0px;
+overflow: hidden;
+width: 270px;
+padding-left: 0px;
+}
 
 
 

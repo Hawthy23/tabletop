@@ -5,7 +5,7 @@
  * 
  */
 import { faL } from "@fortawesome/free-solid-svg-icons";
-import shipsheet from "../script/shipsheet.js"
+
 const props = defineProps({
     info: Object,
     skillname: String
@@ -13,7 +13,7 @@ const props = defineProps({
 
 var overrideFlag = props.info.overrideFlag
 
-var ship = new shipsheet
+
 
 //CALCULATE ACCURATE DISPLAYS  
 
@@ -77,12 +77,7 @@ function rowID() {
 function buttonID() {
     return props.skillname + "Bonus"
 }
-function proID() {
-    return props.skillname + "Pro"
-}
-function expID() {
-    return props.skillname + "Exp"
-}
+
 
 //display functions
 function totalDisp() {
