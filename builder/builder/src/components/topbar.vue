@@ -151,8 +151,10 @@ function currentPoints(type) {
         <div class="flex-item clear">
             <h2 id="shipName">{{ shipData.shipName }}</h2>
             Size {{ shipData.shipSize }}, Tier {{ shipData.ShipTier }}
-            <br>
             Ship Role: {{ shipData.tierRole[0] }}
+            <br>
+            Manufacturer, Model
+            Credits Invested, Credits Next Tier
         </div>
 
         <div class="flex-item clear" id="pointsManagement">

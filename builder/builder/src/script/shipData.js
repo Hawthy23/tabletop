@@ -1,38 +1,151 @@
-
 var shipData = {
     "shipName": "No Engraving Please",
     "shipSize": "Tiny",
     "ShipTier": 0,
     "tierRole": ["IDK", "", "", "", ""], //5 tiers available?
     "profBonus": 2,
+    "reactor": "",
+    "powerCoupling": "",
+    "fueluseMod": "",
+    "powerDice": {
+        "size": "",
+        "regen": {
+            "num": "",
+            "size": "",
+            "mod": "",
+        },
+        "max": {
+            "central": "",
+            "system": ""
+            //5 systems: communications, engines, shields, sensors, weapons
+        },
+        "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
+    },
     "hullStats": {
+        "type": "Deflection",
         "current": 40,
         "temp": 1,
-        "max": 40,
+        "max": 40, //add dice.num * con mod. 
         "dice": {
             "num": 5,
             "size": 8
-        }
+        },
+        "overrideFlag": false,
+        "overrides": {
+            "current": "",
+            "Max": ""
+        },
+        "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
+    },
+    "armorStats": {
+        "dispName": "Saving Throw",
+        "baseAC": 10,
+        "mod": "dex",
+        "tierBonus": ["NULL", "", "", "", "", ""],
+        "Armor": "",
+        "total": "",
+        "magicBonus": 0,
+        "miscBonus": 0,
+        "modsBonus": [0, 0],
+        "overrideFlag": false,
+        "overrides": {
+            "calcTotal": "",
+            "total": "",
+            "Armor": "",
+            "magicBonus": "",
+            "miscBonus": "",
+        },
+        "damageReduction": 0,
+        "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
     },
     "shieldStats": {
+        "type": "Directional",
         "current": 40,
-        "max":40,
+        "max": 40, //add dice.num * con mod. 
         "temp": 5,
         "regenRate": 1,
         "capacity": 1,
         "dice": {
             "num": 5,
             "size": 8
-        }
+        },
+        "overrideFlag": false,
+        "overrides": {
+            "current": "",
+            "Max": ""
+        },
+        "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
     },
     "baseStat": {
-        "str": { "statNum": 14, "bonus": 2 },
-        "dex": { "statNum": 18, "bonus": 4 },
-        "con": { "statNum": 16, "bonus": 3 },
-        "wis": { "statNum": 10, "bonus": 0 },
-        "int": { "statNum": 12, "bonus": 1 },
-        "cha": { "statNum": 20, "bonus": 5 }
+        "str": {
+            "baseStat": 14, "bonus": 2,
+            "asi": ["", "", "", "", "", ""],
+            "overrideFlag": false,
+            "overrides": { "total": "", "magicBonus": "", "miscBonus": "" },
+            "mods": [{ "name": "", "bonus": "" }]
+        },
+        "dex": {
+            "statNum": 18, "bonus": 4,
+            "asi": ["", "", "", "", "", ""],
+            "overrideFlag": false,
+            "overrides": {
+                "total": "",
+                "magicBonus": "",
+                "miscBonus": "",
+            }, 
+            "mods": [{ "name": "", "bonus": "" }]
+        },
+        "con": {
+            "statNum": 16, "bonus": 3,
+            "asi": ["", "", "", "", "", ""],
+            "overrideFlag": false,
+            "overrides": {
+                "total": "",
+                "magicBonus": "",
+                "miscBonus": "",
+            }, 
+            "mods": [{ "name": "", "bonus": "" }]
+        },
+        "wis": {
+            "statNum": 10, "bonus": 0,
+            "asi": ["", "", "", "", "", ""],
+            "overrideFlag": false,
+            "overrides": {
+                "total": "",
+                "magicBonus": "",
+                "miscBonus": "",
+            }, 
+            "mods": [{ "name": "", "bonus": "" }]
+        },
+        "int": {
+            "statNum": 12, "bonus": 1,
+            "asi": ["", "", "", "", "", ""],
+            "overrideFlag": false,
+            "overrides": {
+                "total": "",
+                "magicBonus": "",
+                "miscBonus": "",
+            }, 
+            "mods": [{ "name": "", "bonus": "" }]
+        },
+        "cha": {
+            "statNum": 20, "bonus": 5,
+            "asi": ["", "", "", "", "", ""],
+            "overrideFlag": false,
+            "overrides": {
+                "total": "",
+                "magicBonus": "",
+                "miscBonus": "",
+            }, 
+            "mods": [{ "name": "", "bonus": "" }]
+        }
     },
+    "weapons": [{
+        "name": "Slug cannon",
+        "firingArc": ["port", "aft"],
+        "number": 2,
+        "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
+    }],
     "saves": {
         "str": {
             "dispName": "Saving Throw",
@@ -50,7 +163,8 @@ var shipData = {
                 "adv": "",
                 "magicBonus": "",
                 "miscBonus": "",
-            }
+            },
+            "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
         },
         "dex": {
             "dispName": "Saving Throw",
@@ -68,7 +182,8 @@ var shipData = {
                 "adv": "",
                 "magicBonus": "",
                 "miscBonus": "",
-            }
+            },
+            "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
         },
         "con": {
             "dispName": "Saving Throw",
@@ -86,7 +201,8 @@ var shipData = {
                 "adv": "",
                 "magicBonus": "",
                 "miscBonus": "",
-            }
+            }, 
+            "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
         },
         "int": {
             "dispName": "Saving Throw",
@@ -104,7 +220,8 @@ var shipData = {
                 "adv": "",
                 "magicBonus": "",
                 "miscBonus": "",
-            }
+            }, 
+            "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
         },
         "wis": {
             "dispName": "Saving Throw",
@@ -122,7 +239,8 @@ var shipData = {
                 "adv": "",
                 "magicBonus": "",
                 "miscBonus": "",
-            }
+            }, 
+            "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
         },
         "cha": {
             "dispName": "Saving Throw",
@@ -140,7 +258,8 @@ var shipData = {
                 "adv": "",
                 "magicBonus": "",
                 "miscBonus": "",
-            }
+            }, 
+            "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
         },
 
     },
@@ -162,7 +281,8 @@ var shipData = {
                 "adv": "",
                 "magicBonus": "",
                 "miscBonus": "",
-            }
+            }, 
+            "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
         },
         "ram": {
             "dispName": "Ram",
@@ -181,7 +301,8 @@ var shipData = {
                 "adv": "",
                 "magicBonus": "",
                 "miscBonus": "",
-            }
+            }, 
+            "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
         },
         "hide": {
             "dispName": "Hide",
@@ -200,7 +321,8 @@ var shipData = {
                 "adv": "",
                 "magicBonus": "",
                 "miscBonus": "",
-            }
+            }, 
+            "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
         },
         "maneuvering": {
             "dispName": "Maneuvering",
@@ -219,7 +341,8 @@ var shipData = {
                 "adv": "",
                 "magicBonus": "",
                 "miscBonus": "",
-            }
+            }, 
+            "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
         },
         "patch": {
             "dispName": "Patch",
@@ -238,7 +361,8 @@ var shipData = {
                 "adv": "",
                 "magicBonus": "",
                 "miscBonus": "",
-            }
+            }, 
+            "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
         },
         "regulation": {
             "dispName": "Regulation",
@@ -257,7 +381,8 @@ var shipData = {
                 "adv": "",
                 "magicBonus": "",
                 "miscBonus": "",
-            }
+            }, 
+            "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
         },
         "astrogation": {
             "dispName": "Astrogation",
@@ -276,7 +401,8 @@ var shipData = {
                 "adv": "",
                 "magicBonus": "",
                 "miscBonus": "",
-            }
+            }, 
+            "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
         },
         "data": {
             "dispName": "Data",
@@ -295,7 +421,8 @@ var shipData = {
                 "adv": "",
                 "magicBonus": "",
                 "miscBonus": "",
-            }
+            }, 
+            "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
         },
         "probe": {
             "dispName": "Probe",
@@ -314,7 +441,8 @@ var shipData = {
                 "adv": "",
                 "magicBonus": "",
                 "miscBonus": "",
-            }
+            }, 
+            "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
         },
         "scan": {
             "dispName": "Scan",
@@ -333,7 +461,8 @@ var shipData = {
                 "adv": "",
                 "magicBonus": "",
                 "miscBonus": "",
-            }
+            }, 
+            "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
         },
         "impress": {
             "dispName": "Impress",
@@ -352,7 +481,8 @@ var shipData = {
                 "adv": "",
                 "magicBonus": "",
                 "miscBonus": "",
-            }
+            }, 
+            "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
         },
         "interfere": {
             "dispName": "Interfere",
@@ -371,7 +501,8 @@ var shipData = {
                 "adv": "",
                 "magicBonus": "",
                 "miscBonus": "",
-            }
+            }, 
+            "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
         },
         "menace": {
             "dispName": "Menace",
@@ -390,7 +521,8 @@ var shipData = {
                 "adv": "",
                 "magicBonus": "",
                 "miscBonus": "",
-            }
+            }, 
+            "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
         },
         "swindle": {
             "dispName": "Swindle",
@@ -409,7 +541,8 @@ var shipData = {
                 "adv": "",
                 "magicBonus": "",
                 "miscBonus": "",
-            }
+            }, 
+            "mods": [{ "name": "", "bonus": {"type": "", "number":""} }]
         },
     }
 }

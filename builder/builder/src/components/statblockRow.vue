@@ -109,7 +109,7 @@ defineExpose({
 </script>
 
 <template>
-    <div class="skillRow" :id=rowID()>
+    <div class="Row" :id=rowID()>
         <span class="profScale">
             <div class="exp" :class="{ fill: isExp }" ></div>
             <div class="pro" :class="{ fill: isPro }" ></div>
@@ -124,13 +124,10 @@ defineExpose({
 </template>
 
 <style>
-.skillRow {
-
+.Row {
     padding: 2%;
 }
-
 button {
-
     margin-right: 2%;
 }
 
